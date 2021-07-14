@@ -1,0 +1,17 @@
+checks:
+- code: CUS001
+  description: Custom check to ensure the CostCentre tag is applied to AKS Cluster
+  impact: By not having CostCentre we can't keep track of billing
+  resolution: Add the CostCentre tag
+  requiredTypes:
+  - resource
+  requiredLabels:
+  - azurerm_kubernetes_cluster
+  severity: CRITICAL
+  matchSpec:
+    name: tags
+    action: contains
+    value: CostCentre
+  errorMessage: The required CostCentre tag was missing
+  relatedLinks:
+  - http://internal.acmecorp.com/standards/aws/tagging.html
